@@ -233,40 +233,46 @@ export default class Home extends Component {
 
     return (
       <div>
-        <h1>My Photos Feed</h1>
-        <h3>
-          Want to know who Google thinks you look like? Upload a photo by
-          clicking the middle button at the bottom to find out...
-        </h3>
-        {this.state.isMobile ? <h3>For selfies - rotate to landscape</h3> : ""}
-        {allImages}
+        <div>
+          <h1>My Photos Feed</h1>
+          <h3>
+            Want to know who Google thinks you look like? Upload a photo by
+            clicking the middle button at the bottom to find out...
+          </h3>
+          {this.state.isMobile ? (
+            <h3>For selfies - rotate to landscape</h3>
+          ) : (
+            ""
+          )}
+          {allImages}
 
-        <Container className="bottom-nav">
-          <Row className="show-grid">
-            <Col xs={4} className="col-bottom">
-              <Link to="/app/album">
-                <i className="bottom-icon material-icons">collections</i>
-              </Link>
-            </Col>
-            <Col xs={4} className="col-bottom">
-              <label>
-                <i className="bottom-icon material-icons">camera_alt</i>
-                <FileUploader
-                  hidden
-                  accept="image/*"
-                  storageRef={firebase.storage().ref(this.state.imageRef)}
-                  onUploadStart={this.handleUploadStart}
-                  onUploadError={this.handleUploadError}
-                  onUploadSuccess={this.handleUploadSuccess}
-                  onProgress={this.handleProgress}
-                />
-              </label>
-            </Col>
-            <Col onClick={this.handleLogout} xs={4} className="col-bottom">
-              <i className="bottom-icon material-icons">assignment_return</i>
-            </Col>
-          </Row>
-        </Container>
+          <Container className="bottom-nav">
+            <Row className="show-grid">
+              <Col xs={4} className="col-bottom">
+                <Link to="/app/album">
+                  <i className="bottom-icon material-icons">collections</i>
+                </Link>
+              </Col>
+              <Col xs={4} className="col-bottom">
+                <label>
+                  <i className="bottom-icon material-icons">camera_alt</i>
+                  <FileUploader
+                    hidden
+                    accept="image/*"
+                    storageRef={firebase.storage().ref(this.state.imageRef)}
+                    onUploadStart={this.handleUploadStart}
+                    onUploadError={this.handleUploadError}
+                    onUploadSuccess={this.handleUploadSuccess}
+                    onProgress={this.handleProgress}
+                  />
+                </label>
+              </Col>
+              <Col onClick={this.handleLogout} xs={4} className="col-bottom">
+                <i className="bottom-icon material-icons">assignment_return</i>
+              </Col>
+            </Row>
+          </Container>
+        </div>
       </div>
     );
   }
